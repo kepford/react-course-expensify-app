@@ -2,7 +2,7 @@ import moment from 'moment';
 import selectExpenses from '../../selectors/expenses';
 import expenses from '../fixtures/expenses';
 
-test('should filter by test value', () => {
+test('should filter by text value', () => {
   const filters = {
     text: 'e',
     sortBy: 'date',
@@ -10,7 +10,7 @@ test('should filter by test value', () => {
     endDate: undefined
   };
   const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([ expenses[2], expenses[1]]);
+  expect(result).toEqual([expenses[2], expenses[1]]);
 });
 
 test('should filter by startDate', () => {
@@ -46,7 +46,6 @@ test('should sort by date', () => {
   expect(result).toEqual([expenses[2], expenses[0], expenses[1]]);
 });
 
-// should filter by amount
 test('should sort by amount', () => {
   const filters = {
     text: '',

@@ -19,7 +19,7 @@ beforeEach(() => {
   );
 });
 
-test('should render EditExpensePage correctly', () => {
+test('should render EditExpensePage', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -36,5 +36,3 @@ test('should handle removeExpense', () => {
     id: expenses[2].id
   });
 });
-
-
