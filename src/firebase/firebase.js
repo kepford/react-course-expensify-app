@@ -5,34 +5,83 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref('expenses').push({
-  description: 'Rent',
-  note: 'Here is a note about rent.',
-  amount: 12345,
-  createdAt: 987656778
+// child_added
+database.ref('expenses').on('child_added', (snapshot) => {
+  console.log(snapshot.key, snapshot.val());
 });
 
-database.ref('expenses').push({
-  description: 'Phone',
-  note: 'Test note',
-  amount: 5000,
-  createdAt: 91197656778
+// child_changed
+database.ref('expenses').on('child_changed', (snapshot) => {
+  console.log(snapshot.key, snapshot.val());
 });
 
-database.ref('expenses').push({
-  description: 'Food',
-  note: 'Test note',
-  amount: 55533,
-  createdAt: 1000987656778
+// Child removed.
+database.ref('expenses').on('child_removed', (snapshot) => {
+  console.log(snapshot.key, snapshot.val());
 });
 
+// Get array of our data.
+// database.ref('expenses')
+//   .once('value')
+//   .then((snapshot) => {
+//     const expenses = [];
 
+//     snapshot.forEach((childSnapshot) => {
+//       expenses.push({
+//         id: childSnapshot.key,
+//         ...childSnapshot.val()
+//       });
+//     });
+
+//     console.table(expenses);
+//   });
+
+// Subscribe to event data
+// database.ref('expenses').on('value', (snapshot) => {
+//   const expenses = [];
+
+//   snapshot.forEach((childSnapshot) => {
+//     expenses.push({
+//       id: childSnapshot.key,
+//       ...childSnapshot.val()
+//     });
+//   });
+
+//   console.table(expenses);
+// });
+
+// Add new expenses
+// database.ref('expenses').push({
+//   description: 'Rent',
+//   note: 'Here is a note about rent.',
+//   amount: 12345,
+//   createdAt: 987656778
+// });
+
+// database.ref('expenses').push({
+//   description: 'Phone',
+//   note: 'Test note',
+//   amount: 5000,
+//   createdAt: 91197656778
+// });
+
+// database.ref('expenses').push({
+//   description: 'Food',
+//   note: 'Test note',
+//   amount: 55533,
+//   createdAt: 1000987656778
+// });
+
+// Notes:
+
+// Remove a note
 // database.ref('notes/L0wfgaGBC9d9OA4Nbxw').remove();
 
 // database.ref('notes/L0wfgaGBC9d9OA4Nbxw').update({
 //   body: 'Buy stuff'
 // });
 
+// Add note
 // database.ref('notes').push({
 //   title: 'To Do',
 //   body: 'Just do it'
