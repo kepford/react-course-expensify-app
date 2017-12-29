@@ -52,7 +52,7 @@ export class ExpenseListFilters extends React.Component {
       </div>
     );
   }
-};
+}
 
 const mapStateToProps = (state) => ({
   filters: state.filters
